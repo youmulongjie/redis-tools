@@ -1,0 +1,20 @@
+server:
+  port: 80                                        #端口号
+  servlet:
+    context-path: /springboot03                         #跟路径
+
+spring:
+  redis:
+    database: 0      #Redis 数据库索引
+    host: 127.0.0.1  #服务器地址
+    port: 6379       #服务器连接端口
+    password: andy   #密码（默认为空）
+    jedis:
+      pool:
+        max-active: 8     #连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1      #最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 8       #最大空闲连接
+        min-idle: 0       #最小空闲连接
+    timeout: 1000     #连接超时时间（毫秒）
+
+
