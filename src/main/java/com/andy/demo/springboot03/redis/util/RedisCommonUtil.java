@@ -17,7 +17,7 @@ public class RedisCommonUtil {
     protected RedisTemplate<String, Object> redisTemplate;
 
     /**
-     * 指定缓存失效时间
+     * 指定缓存失效时间（expire key seconds）
      * @param key 建
      * @param timeout 失效时间（单位：秒，小于等于0 表示 永久有效）
      */
@@ -32,7 +32,7 @@ public class RedisCommonUtil {
     }
 
     /**
-     * 取 key键 的失效时间
+     * 取 key键 的失效时间（ttl key）
      * @param key 键
      * @return 失效时间（单位：秒）
      */
@@ -41,7 +41,7 @@ public class RedisCommonUtil {
     }
 
     /**
-     * 判断 key键 是否存在
+     * 判断 key键 是否存在（exists key）
      * @param key 键
      * @return 存在：true；不存在：false
      */
@@ -50,7 +50,7 @@ public class RedisCommonUtil {
     }
 
     /**
-     * 删除key键数组的缓存
+     * 删除key键数组的缓存（del key）
      * @param keys 要删除缓存的key键 数组
      */
     public void del(String ...keys){

@@ -11,6 +11,8 @@ springboot 版本：2.0.6.RELEASE
 ## Redis封装工具类
 <ul>
     <li>RedisStringUtil（操作String类型）</li>
+    <li>RedisListUtil（操作List类型）</li>
+    <li>RedisSetUtil（操作Set类型）</li>
 </ul>
 
 ## Andy.wang
