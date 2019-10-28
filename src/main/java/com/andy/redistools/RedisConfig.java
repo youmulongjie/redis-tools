@@ -1,4 +1,4 @@
-package com.andy.demo.springboot03.redis;
+package com.andy.redistools;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
