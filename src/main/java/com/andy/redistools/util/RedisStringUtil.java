@@ -1,4 +1,4 @@
-package com.andy.demo.springboot03.redis.util;
+package com.andy.redistools.util;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
