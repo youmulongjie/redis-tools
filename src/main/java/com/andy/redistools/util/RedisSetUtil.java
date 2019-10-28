@@ -1,19 +1,19 @@
-package com.andy.demo.springboot03.redis.util;
+package com.andy.redistools.util;
 
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
 @Component
-public class RedisSetUtil extends RedisCommonUtil {
+public class RedisSetUtil<T> extends RedisCommonUtil {
 
     /**
      * 获取 key键 对应的 Set集合
      * @param key 键
      * @return key键 对应的 Set集合
      */
-    public Set<Object> members(String key){
-        return redisTemplate.opsForSet().members(key);
+    public Set<T> members(String key){
+        return (Set<T>) redisTemplate.opsForSet().members(key);
     }
 
     /**
@@ -43,7 +43,7 @@ public class RedisSetUtil extends RedisCommonUtil {
      * @param timeout 失效时间（单位：秒，小于等于0 表示 永久有效）
      * @return
      */
-    public long addSet(String key, Object []values, long timeout){
+    public long addSet(String key, T []values, long timeout){
         long count = redisTemplate.opsForSet().add(key, values);
         expire(key, timeout);
         return count;
@@ -64,7 +64,7 @@ public class RedisSetUtil extends RedisCommonUtil {
      * @param values 要移除的值数组
      * @return 移除成功的个数
      */
-    public long remove(String key, Object ...values){
+    public long remove(String key, T ...values){
         return redisTemplate.opsForSet().remove(key, values);
     }
 }
