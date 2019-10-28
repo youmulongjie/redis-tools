@@ -1,4 +1,4 @@
-package com.andy.demo.springboot03;
+package com.andy.redistools;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

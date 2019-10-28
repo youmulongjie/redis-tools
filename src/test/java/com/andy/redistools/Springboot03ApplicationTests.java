@@ -1,16 +1,14 @@
-package com.andy.demo.springboot03;
+package com.andy.redistools;
 
-import com.andy.demo.springboot03.redis.util.RedisStringUtil;
+import com.andy.redistools.util.RedisStringUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.CollectionUtils;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
