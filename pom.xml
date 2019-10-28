@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.andy.demo</groupId>
-	<artifactId>springboot03</artifactId>
+	<groupId>com.andy</groupId>
+	<artifactId>redis-tools</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>springboot03</name>
-	<description>Demo project for Spring Boot</description>
+	<name>redis-tools</name>
+	<description>Redis 工具类</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -53,13 +53,40 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.name}</finalName>
 		<plugins>
+			<!-- 工具包，其他module引用即可，不能打成可执行的jar包 -->
+			<!--
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            -->
+
+			<!-- 要将源码放上去，需要加入这个插件 -->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
 			</plugin>
 		</plugins>
 	</build>
+
 
 
 </project>
