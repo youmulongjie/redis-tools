@@ -12,7 +12,7 @@ import java.util.Set;
  * Date: 2019/10/29 09:08
  */
 @Component
-public class RedisHashUtil extends RedisCommonUtil {
+public class RedisHashUtil<HK, HV> extends RedisCommonUtil {
     /**
      * 将hash表中放入数据,如果不存在将创建（hset key item value）
      *
@@ -20,7 +20,7 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param item  hash key
      * @param value hash value
      */
-    public void hset(String key, Object item, Object value) {
+    public void hset(String key, HK item, HV value) {
         redisTemplate.opsForHash().put(key, item, value);
     }
 
@@ -37,7 +37,7 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param value   hash value
      * @param timeout 失效时间（单位：秒，小于等于0 表示 永久有效）
      */
-    public void hset(String key, Object item, Object value, long timeout) {
+    public void hset(String key, HK item, HV value, long timeout) {
         redisTemplate.opsForHash().put(key, item, value);
 
         // 设置 key 失效时间
@@ -50,7 +50,7 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param key  redis key
      * @param hash map 表中放入数据
      */
-    public void hmSet(String key, Map<Object, Object> hash) {
+    public void hmSet(String key, Map<HK, HV> hash) {
         redisTemplate.opsForHash().putAll(key, hash);
     }
 
@@ -61,7 +61,7 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param hash    map 表中放入数据
      * @param timeout 失效时间（单位：秒，小于等于0 表示 永久有效）
      */
-    public void hmSet(String key, Map<Object, Object> hash, long timeout) {
+    public void hmSet(String key, Map<HK, HV> hash, long timeout) {
         redisTemplate.opsForHash().putAll(key, hash);
 
         // 设置 key 失效时间
@@ -75,7 +75,7 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param item hash item
      * @return 存在返回true，不存在返回 false
      */
-    public boolean hasKey(String key, Object item) {
+    public boolean hasKey(String key, HK item) {
         return redisTemplate.opsForHash().hasKey(key, item);
     }
 
@@ -86,8 +86,8 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param item hash item
      * @return item 对应的 value
      */
-    public Object hget(String key, Object item) {
-        return redisTemplate.opsForHash().get(key, item);
+    public HV hget(String key, HK item) {
+        return (HV) redisTemplate.opsForHash().get(key, item);
     }
 
     /**
@@ -96,8 +96,8 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param key redis key
      * @return 对应的 hash 数据
      */
-    public Map<Object, Object> hmGet(String key) {
-        return redisTemplate.opsForHash().entries(key);
+    public Map<HK, HV> hmGet(String key) {
+        return (Map<HK, HV>) redisTemplate.opsForHash().entries(key);
     }
 
     /**
@@ -107,7 +107,7 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param item hash item
      * @return 返回删除个数
      */
-    public long hdel(String key, Object... item) {
+    public long hdel(String key, HK... item) {
         if (null != item && item.length > 0) {
             return redisTemplate.opsForHash().delete(key, item);
         }
@@ -122,7 +122,7 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param by   递增量
      * @return 自增后的数量
      */
-    public long hincr(String key, Object item, long by) {
+    public long hincr(String key, HK item, long by) {
         return redisTemplate.opsForHash().increment(key, item, by);
     }
 
@@ -134,7 +134,7 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param by   递减量
      * @return 递减后的数量
      */
-    public long hdecr(String key, Object item, long by) {
+    public long hdecr(String key, HK item, long by) {
         return redisTemplate.opsForHash().increment(key, item, -by);
     }
 
@@ -144,8 +144,8 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param key redis key
      * @return hash item 集合
      */
-    public Set<Object> hItemKeys(String key) {
-        return redisTemplate.opsForHash().keys(key);
+    public Set<HK> hItemKeys(String key) {
+        return (Set<HK>) redisTemplate.opsForHash().keys(key);
     }
 
     /**
@@ -154,8 +154,8 @@ public class RedisHashUtil extends RedisCommonUtil {
      * @param key redis key
      * @return hash value 集合
      */
-    public List<Object> hItemValues(String key) {
-        return redisTemplate.opsForHash().values(key);
+    public List<HV> hItemValues(String key) {
+        return (List<HV>) redisTemplate.opsForHash().values(key);
     }
 
     /**
